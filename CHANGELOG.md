@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.5.0
+- Added a direct `ui_toxic_air_16.xml` override for the BHS option, so the base Toxic Air include chain cannot restore its original right-side mask icon.
+
 ## 1.4.0
 - Replaced the unsupported long dash in English and Russian live-positioning headings with a safe hyphen.
 
