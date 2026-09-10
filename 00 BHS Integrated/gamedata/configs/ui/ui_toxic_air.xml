@@ -1,6 +1,6 @@
 <w>
   <!-- Mirrors the thin native BHS limb bars, stretched to the BHS status width. -->
-  <bg x="0" y="2" width="71" height="4" complex_mode="1" stretch="1"><texture>ui_hud_bhs_bar_bg</texture></bg>
-  <bar x="0" y="2" width="71" height="4" min="0" horz="1" max="1" stretch="1"><progress stretch="1"><texture>ui_hud_bhs_bar</texture></progress></bar>
-  <mask x="-7" y="0" width="5" height="8" complex_mode="1" stretch="1"><texture a="165">ui_toxic_air_mask</texture></mask>
+  <bg x="0" y="0" width="71" height="4" complex_mode="1" stretch="1"><texture>ui_hud_bhs_bar_bg</texture></bg>
+  <bar x="0" y="0" width="71" height="4" min="0" horz="1" max="1" stretch="1"><progress stretch="1"><texture>ui_hud_bhs_bar</texture></progress></bar>
+  <mask x="-7" y="-2" width="5" height="8" complex_mode="1" stretch="1"><texture a="165">ui_toxic_air_mask</texture></mask>
 </w>

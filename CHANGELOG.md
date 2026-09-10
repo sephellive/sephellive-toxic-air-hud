@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.3
+- Aligned the native BHS fill with its background by removing the child-bar offset.
+- Centred the 5x8 mask icon against the bar and reduced the gap from the BHS stamina bar by 1 pixel.
+
 ## 1.7.2
 - Increased and re-centred the left mask icon, while moving the BHS Toxic Air group down 2 pixels for a clearer upper gap.
 

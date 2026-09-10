@@ -2092,9 +2092,9 @@ function ToxicAir:Update()
 end
 
 function ToxicAir:UpdPos()
-	-- BHS 16:9 anchor: 4px below its 71x10 stamina bar in the left HUD cluster.
+	-- BHS 16:9 anchor: 3px below its 71x10 stamina bar in the left HUD cluster.
 	-- This intentionally ignores Toxic Air's own MCM X/Y settings for this FOMOD layout.
-	self.bg:SetWndPos(vector2():set(15, 759))
+	self.bg:SetWndPos(vector2():set(15, 758))
 end
 
 function ToxicAir:__finalize()
