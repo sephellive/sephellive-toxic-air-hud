@@ -1,6 +1,6 @@
 <w>
   <!-- Direct 16:9 override. The base ui_toxic_air.xml includes this file. -->
-  <bg x="0" y="0" width="71" height="10" complex_mode="1" stretch="1"><texture>ui_hud_bhs_stamina_bg</texture></bg>
-  <bar x="0" y="0" width="71" height="10" min="0" horz="1" max="1" stretch="1"><progress stretch="1"><texture>ui_hud_bhs_stamina</texture></progress></bar>
+  <bg x="0" y="0" width="71" height="4" complex_mode="1" stretch="1"><texture>ui_hud_bhs_bar_bg</texture></bg>
+  <bar x="0" y="0" width="71" height="4" min="0" horz="1" max="1" stretch="1"><progress stretch="1"><texture>ui_hud_bhs_bar</texture></progress></bar>
   <mask x="-6" y="1" width="4" height="7" complex_mode="1" stretch="1"><texture a="165">ui_toxic_air_mask</texture></mask>
 </w>
