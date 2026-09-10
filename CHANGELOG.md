@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.7.0
+- Replaced the Toxic Air bar artwork in the BHS option with BHS's native stamina background and progress textures for matching empty and filled states.
+- Positioned the readable left mask icon within the BHS-style bar.
+
 ## 1.6.2
 - Reduced the BHS toxic-air bar to a 2-pixel line and enlarged the left mask icon slightly for readability.
 
