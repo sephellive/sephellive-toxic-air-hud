@@ -1,29 +1,130 @@
--- Extension for Toxic Air Redux. Loaded after the base script; no gameplay logic is replaced.
-local function level_present() return level.present() end
-local function apply(key, value)
-  if ui_mcm then ui_mcm.set("toxic_air/" .. key, value) end
-  if HUD and HUD.UpdPos then HUD:UpdPos() end
+-- Draggable layout extension for Toxic Air Redux. Gameplay code is untouched.
+local positioner_gui = nil
+
+local function page_path(key)
+  return "sep_toxic_air_positioner/main/" .. key
+end
+
+local function apply_position(key, value)
+  if ui_mcm then
+    ui_mcm.set(page_path(key), value)
+    ui_mcm.set("toxic_air/position_" .. (key == "pos_x" and "x" or "y"), value)
+  end
+  if HUD and HUD.UpdPos then
+    HUD:UpdPos()
+    HUD.bg:Show(true)
+    HUD.bar:SetProgressPos(0.66)
+  end
 end
 
 function on_mcm_load(options)
-  local op = { id = "sep_toxic_air_positioner", sh = true, gr = {
-    {id="title", type="title", text="Toxic Air HUD position"},
-    {id="hint", type="text", text="Open Preview, then adjust the sliders. The real Toxic Air HUD moves immediately."},
-    {id="pos_x", type="track", val=2, def=865, min=0, max=1000, step=1},
-    {id="pos_y", type="track", val=2, def=700, min=0, max=760, step=1},
-    {id="preview", type="button", functor_ui={start_ui}, precondition={level_present}},
+  local op = { id = "main", sh = true, gr = {
+    {id = "title", type = "title", text = "ui_mcm_sep_toxic_air_positioner_main_title"},
+    {id = "hint", type = "text", text = "ui_mcm_sep_toxic_air_positioner_main_hint"},
+    {id = "pos_x", type = "track", val = 2, def = 865, min = 0, max = 1000, step = 1},
+    {id = "pos_y", type = "track", val = 2, def = 700, min = 0, max = 760, step = 1},
+    {id = "preview", type = "button", functor_ui = {start_ui}, precondition = {level_present}},
   }}
   return op, "sep_toxic_air_positioner"
 end
 
-function start_ui(self)
-  self:On_Cancel()
-  if HUD then HUD.bg:Show(true); HUD.bar:SetProgressPos(0.66) end
+function level_present()
+  return level.present()
 end
 
 function on_option_change()
-  if ui_mcm then
-    apply("position_x", ui_mcm.get("sep_toxic_air_positioner/pos_x") or 865)
-    apply("position_y", ui_mcm.get("sep_toxic_air_positioner/pos_y") or 700)
+  if not ui_mcm then return end
+  apply_position("pos_x", ui_mcm.get(page_path("pos_x")) or 865)
+  apply_position("pos_y", ui_mcm.get(page_path("pos_y")) or 700)
+end
+
+local commands = {
+  { key = "pos_x", min = 0, max = 1000, step = 1 },
+  { key = "pos_y", min = 0, max = 760, step = 1 },
+}
+
+function start_ui(self)
+  if self and self.On_Cancel then self:On_Cancel() end
+  if not level.present() then return end
+  exec_console_cmd("main_menu off")
+  if not positioner_gui then positioner_gui = ToxicAirPositionControl() end
+  if not positioner_gui:IsShown() then
+    positioner_gui:ShowDialog(true)
+    Register_UI("ToxicAirPositionControl", "sep_toxic_air_positioner_mcm")
+    if HUD then HUD.bg:Show(true); HUD.bar:SetProgressPos(0.66) end
   end
+end
+
+class "ToxicAirPositionControl" (CUIScriptWnd)
+
+function ToxicAirPositionControl:__init() super()
+  self:InitControls()
+  RegisterScriptCallback("actor_on_net_destroy", self)
+end
+
+function ToxicAirPositionControl:__finalize()
+  positioner_gui = nil
+end
+
+function ToxicAirPositionControl:actor_on_net_destroy()
+  self:Close()
+end
+
+function ToxicAirPositionControl:InitControls()
+  self:SetWndRect(Frect():set(0, 0, 1024, 768))
+  self:SetAutoDelete(true)
+  local xml = CScriptXmlInit()
+  xml:ParseFile("ui_options.xml")
+  self.dialog = xml:InitStatic("ctrl_lighting", self)
+  xml:InitFrame("ctrl_lighting:frame", self.dialog)
+  local caption = xml:InitStatic("ctrl_lighting:cap_main", self.dialog)
+  caption:TextControl():SetText(game.translate_string("ui_mcm_sep_toxic_air_positioner_main_preview_title"))
+  self.scroll = xml:InitScrollView("ctrl_lighting:scroll", self.dialog)
+  self.scroll:Clear()
+  self.track, self.value = {}, {}
+  for i, command in ipairs(commands) do
+    local row = xml:InitStatic("ctrl_lighting:st", nil)
+    local caption_row = xml:InitStatic("ctrl_lighting:cap", row)
+    caption_row:TextControl():SetText(game.translate_string("ui_mcm_sep_toxic_air_positioner_main_" .. command.key))
+    local current = ui_mcm.get(page_path(command.key)) or (command.key == "pos_x" and 865 or 700)
+    self.track[i] = xml:InitTrackBar("ctrl_lighting:track", row)
+    self.track[i]:SetStep(command.step)
+    self.track[i]:SetOptFBounds(command.min, command.max)
+    self.track[i]:SetFValue(current)
+    self.value[i] = current
+    local number = xml:InitTextWnd("ctrl_lighting:num", row)
+    number:SetText(current)
+    self["number_" .. i] = number
+    self.scroll:AddWindow(row, true)
+    row:SetAutoDelete(true)
+  end
+end
+
+function ToxicAirPositionControl:Update()
+  CUIScriptWnd.Update(self)
+  for i, track in ipairs(self.track) do
+    if track:IsCursorOverWindow() then
+      local value = round_idp(track:GetFValue(), 0)
+      if value ~= self.value[i] then
+        self.value[i] = value
+        apply_position(commands[i].key, value)
+        self["number_" .. i]:SetText(value)
+      end
+    end
+  end
+end
+
+function ToxicAirPositionControl:OnKeyboard(dik, keyboard_action)
+  local res = CUIScriptWnd.OnKeyboard(self, dik, keyboard_action)
+  if keyboard_action == ui_events.WINDOW_KEY_PRESSED and dik == DIK_keys.DIK_ESCAPE then
+    self:Close()
+  end
+  return res
+end
+
+function ToxicAirPositionControl:Close()
+  self:HideDialog()
+  self:Show(false)
+  Unregister_UI("ToxicAirPositionControl")
+  positioner_gui = nil
 end

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<string_table>
+  <string id="ui_mcm_menu_sep_toxic_air_positioner"><text>Toxic Air HUD Positioner</text></string>
+  <string id="ui_mcm_sep_toxic_air_positioner_main_title"><text>Toxic Air HUD Positioner</text></string>
+  <string id="ui_mcm_sep_toxic_air_positioner_main_hint"><text>Adjust X/Y here, or open the live in-game preview for precise placement.</text></string>
+  <string id="ui_mcm_sep_toxic_air_positioner_main_pos_x"><text>Horizontal position</text></string>
+  <string id="ui_mcm_sep_toxic_air_positioner_main_pos_y"><text>Vertical position</text></string>
+  <string id="ui_mcm_sep_toxic_air_positioner_main_preview"><text>Open live HUD preview</text></string>
+  <string id="ui_mcm_sep_toxic_air_positioner_main_preview_title"><text>Toxic Air HUD — Live Positioning</text></string>
+</string_table>
