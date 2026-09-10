@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+  <moduleName>Toxic Air HUD for BHS</moduleName>
+  <installSteps order="Explicit">
+    <installStep name="HUD layout">
+      <optionalFileGroups order="Explicit">
+        <group name="Choose one layout" type="SelectExactlyOne">
+          <plugins order="Explicit">
+            <plugin name="BHS integrated HUD">
+              <description>Wide toxic-air bar below the BHS group; smaller mask icon on the left.</description>
+              <files><folder source="00 BHS Integrated" destination="" priority="0" /></files>
+              <typeDescriptor><type name="Recommended" /></typeDescriptor>
+            </plugin>
+            <plugin name="Draggable original HUD">
+              <description>Original compact HUD plus live MCM position preview and sliders.</description>
+              <files><folder source="01 Draggable Original" destination="" priority="0" /></files>
+              <typeDescriptor><type name="Optional" /></typeDescriptor>
+            </plugin>
+          </plugins>
+        </group>
+      </optionalFileGroups>
+    </installStep>
+  </installSteps>
+</config>

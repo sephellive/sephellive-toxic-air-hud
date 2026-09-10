@@ -1,0 +1,29 @@
+-- Extension for Toxic Air Redux. Loaded after the base script; no gameplay logic is replaced.
+local function level_present() return level.present() end
+local function apply(key, value)
+  if ui_mcm then ui_mcm.set("toxic_air/" .. key, value) end
+  if HUD and HUD.UpdPos then HUD:UpdPos() end
+end
+
+function on_mcm_load(options)
+  local op = { id = "sep_toxic_air_positioner", sh = true, gr = {
+    {id="title", type="title", text="Toxic Air HUD position"},
+    {id="hint", type="text", text="Open Preview, then adjust the sliders. The real Toxic Air HUD moves immediately."},
+    {id="pos_x", type="track", val=2, def=865, min=0, max=1000, step=1},
+    {id="pos_y", type="track", val=2, def=700, min=0, max=760, step=1},
+    {id="preview", type="button", functor_ui={start_ui}, precondition={level_present}},
+  }}
+  return op, "sep_toxic_air_positioner"
+end
+
+function start_ui(self)
+  self:On_Cancel()
+  if HUD then HUD.bg:Show(true); HUD.bar:SetProgressPos(0.66) end
+end
+
+function on_option_change()
+  if ui_mcm then
+    apply("position_x", ui_mcm.get("sep_toxic_air_positioner/pos_x") or 865)
+    apply("position_y", ui_mcm.get("sep_toxic_air_positioner/pos_y") or 700)
+  end
+end

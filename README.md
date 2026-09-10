@@ -1,6 +1,27 @@
-# &lt;Addon Name&gt;
+# Toxic Air HUD for BHS
 
-Short description of the addon.
+FOMOD layout patch for **Toxic Air Redux 2.0**. Choose one layout:
+
+- **BHS integrated** — a 71px toxic-air bar placed below the BHS radiation/stamina group. The mask icon is reduced and placed at the left edge.
+- **Draggable original** — preserves Toxic Air's compact HUD and adds a live MCM position preview with X/Y sliders.
+
+## Requirements
+
+- S.T.A.L.K.E.R. Anomaly 1.5.3 / GAMMA 0.9.5
+- Toxic Air Redux 2.0 - Priler
+- For the integrated layout: Body Health System - Grokitach
+- Mod Configuration Menu (included with GAMMA)
+
+## Install
+
+Install the archive through MO2. Select exactly one FOMOD layout and place this patch below Toxic Air Redux (and below BHS for the BHS layout).
+
+## Credits
+
+- Toxic Air Redux 2.0 - Priler and its contributors — original Toxic Air system and HUD
+- Grokitach — Body Health System
+- Demonized / Anomaly Popup Messages — reference for the live-positioning workflow
+- Sephellive — FOMOD packaging, BHS layout and positioning extension
 
 This repository is a template for small, independent S.T.A.L.K.E.R. Anomaly addons. Replace the placeholders, add the addon files under `gamedata`, and develop the mod without a separate build system.
 

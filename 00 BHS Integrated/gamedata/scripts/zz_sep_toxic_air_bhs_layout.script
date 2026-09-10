@@ -1,0 +1,14 @@
+-- Layout-only patch for Toxic Air Redux. It deliberately leaves Toxic Air gameplay untouched.
+-- 16:9 BHS: x=15 aligns to its 71px horizontal bar; y=757 places Toxic Air directly beneath it.
+local function pin_to_bhs()
+  if ToxicAir then
+    function ToxicAir:UpdPos()
+      self.bg:SetWndPos(vector2():set(15, 757))
+    end
+  end
+  if HUD and HUD.UpdPos then HUD:UpdPos() end
+end
+
+function on_game_start()
+  RegisterScriptCallback("actor_on_first_update", pin_to_bhs)
+end
