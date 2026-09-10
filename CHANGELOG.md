@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.4.0
+- Replaced the unsupported long dash in English and Russian live-positioning headings with a safe hyphen.
+
 ## 1.3.0
 
 - Refined the BHS layout: matching 71x10 bar proportions, left-aligned smaller mask icon, and even stack spacing.
