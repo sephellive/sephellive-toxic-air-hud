@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.7.2
+- Increased and re-centred the left mask icon, while moving the BHS Toxic Air group down 2 pixels for a clearer upper gap.
+
 ## 1.7.1
 - Switched the BHS Toxic Air bar to the native thin BHS limb-bar textures to match nearby bars more closely.
 
