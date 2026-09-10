@@ -10,11 +10,6 @@ local function apply_position(key, value)
     ui_mcm.set(page_path(key), value)
     ui_mcm.set("toxic_air/position_" .. (key == "pos_x" and "x" or "y"), value)
   end
-  if HUD and HUD.UpdPos then
-    HUD:UpdPos()
-    HUD.bg:Show(true)
-    HUD.bar:SetProgressPos(0.66)
-  end
 end
 
 function on_mcm_load(options)
@@ -51,7 +46,7 @@ function start_ui(self)
   if not positioner_gui:IsShown() then
     positioner_gui:ShowDialog(true)
     Register_UI("ToxicAirPositionControl", "sep_toxic_air_positioner_mcm")
-    if HUD then HUD.bg:Show(true); HUD.bar:SetProgressPos(0.66) end
+    ui_mcm.set("sep_toxic_air_positioner/main/preview_active", true)
   end
 end
 
@@ -126,5 +121,6 @@ function ToxicAirPositionControl:Close()
   self:HideDialog()
   self:Show(false)
   Unregister_UI("ToxicAirPositionControl")
+  if ui_mcm then ui_mcm.set("sep_toxic_air_positioner/main/preview_active", false) end
   positioner_gui = nil
 end

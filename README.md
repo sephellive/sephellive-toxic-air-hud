@@ -29,6 +29,11 @@ Install the archive through MO2. Select exactly one FOMOD layout and place this 
 - The preview button opens the in-game position controller instead of returning to the main menu.
 - The BHS layout is pinned below the BHS lower horizontal bar and cannot be reset by Toxic Air's original MCM position values.
 
+## 1.2.0 fixes
+
+- Draggable now moves the actual Toxic Air HUD every frame while its live-positioning sliders are adjusted.
+- BHS integration now applies inside Toxic Air's own HUD script, anchoring the bar in the BHS cluster at the lower-left of the screen.
+
 This repository is a template for small, independent S.T.A.L.K.E.R. Anomaly addons. Replace the placeholders, add the addon files under `gamedata`, and develop the mod without a separate build system.
 
 ## Requirements

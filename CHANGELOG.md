@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.2.0
+
+- Fixed live Draggable movement by updating the real Toxic Air HUD instance rather than an isolated script reference.
+- Fixed the BHS layout by applying its anchor inside the original Toxic Air HUD implementation.
+
 ## 1.1.0
 
 - Added English and Russian localisation for the Draggable MCM page and controls.
