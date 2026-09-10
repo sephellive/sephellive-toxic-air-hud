@@ -34,6 +34,12 @@ Install the archive through MO2. Select exactly one FOMOD layout and place this 
 - Draggable now moves the actual Toxic Air HUD every frame while its live-positioning sliders are adjusted.
 - BHS integration now applies inside Toxic Air's own HUD script, anchoring the bar in the BHS cluster at the lower-left of the screen.
 
+## 1.3.0 fixes
+
+- BHS Toxic Air bar now matches the 71x10 BHS stamina-bar proportions.
+- Reduced the gas-mask icon and moved it to the left of the bar.
+- Set a 2px vertical gap so the bottom BHS HUD stack remains evenly spaced and fully visible.
+
 This repository is a template for small, independent S.T.A.L.K.E.R. Anomaly addons. Replace the placeholders, add the addon files under `gamedata`, and develop the mod without a separate build system.
 
 ## Requirements

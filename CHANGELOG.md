@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.3.0
+
+- Refined the BHS layout: matching 71x10 bar proportions, left-aligned smaller mask icon, and even stack spacing.
+
 ## 1.2.0
 
 - Fixed live Draggable movement by updating the real Toxic Air HUD instance rather than an isolated script reference.
