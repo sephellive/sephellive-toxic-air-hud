@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.2
+- Reduced the BHS toxic-air bar to a 2-pixel line and enlarged the left mask icon slightly for readability.
+
 ## 1.6.1
 - Reduced the BHS toxic-air bar to the original 3-pixel thickness while retaining the BHS width.
 
