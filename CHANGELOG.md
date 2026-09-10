@@ -1,5 +1,8 @@
 # Changelog
 
+## 1.6.0
+- Reduced the BHS toxic-air bar to a thin 71x4 line and scaled the left mask icon to match.
+
 ## 1.5.0
 - Added a direct `ui_toxic_air_16.xml` override for the BHS option, so the base Toxic Air include chain cannot restore its original right-side mask icon.
 

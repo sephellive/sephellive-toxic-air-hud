@@ -1,7 +1,6 @@
 <w>
-  <!-- Matches BHS stamina: 71px wide, 10px high. The parent is anchored at 15,757. -->
-  <bg x="0" y="0" width="71" height="10" complex_mode="1" stretch="1"><texture>ui_toxic_air_bg</texture></bg>
-  <bar x="0" y="0" width="71" height="10" min="0" horz="1" max="1" stretch="1"><progress stretch="1"><texture>ui_toxic_air_bar</texture></progress></bar>
-  <!-- Small mask sits to the left of the bar; 2px gap above the lower edge keeps the BHS stack even. -->
-  <mask x="-7" y="1" width="5" height="8" complex_mode="1" stretch="1"><texture a="165">ui_toxic_air_mask</texture></mask>
+  <!-- BHS width, with a thin foreground line matching the nearby status bars. -->
+  <bg x="0" y="0" width="71" height="4" complex_mode="1" stretch="1"><texture>ui_toxic_air_bg</texture></bg>
+  <bar x="0" y="0" width="71" height="4" min="0" horz="1" max="1" stretch="1"><progress stretch="1"><texture>ui_toxic_air_bar</texture></progress></bar>
+  <mask x="-6" y="-1" width="4" height="6" complex_mode="1" stretch="1"><texture a="165">ui_toxic_air_mask</texture></mask>
 </w>
